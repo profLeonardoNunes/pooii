@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,12 +13,12 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Leonardo
  */
 public class Pessoa {
+
     private int id;
     private String nome;
     private int idade;
@@ -67,54 +68,69 @@ public class Pessoa {
     }
 
     public Double getIMC() {
-        this.IMC = this.peso / (this.altura*this.altura);       
-        
+        this.IMC = this.peso / (this.altura * this.altura);
+
         return IMC;
     }
 
     public String getDescIMC() {
-        if(this.getIMC()<18.5)
-        {
+        if (this.getIMC() < 18.5) {
             this.descIMC = "Magreza";
-        }else if(this.getIMC()>=18.5 && this.IMC<=24.9)
-        {
+        } else if (this.getIMC() >= 18.5 && this.IMC <= 24.9) {
             this.descIMC = "Normal";
-        }
-        else if(this.getIMC()>=25 && this.IMC<=29.9)
-        {
+        } else if (this.getIMC() >= 25 && this.IMC <= 29.9) {
             this.descIMC = "Normal";
-        }
-        else{
+        } else {
             this.descIMC = "Obesidade";
         }
-        
+
         System.out.println(descIMC);
         return descIMC;
     }
-    
-    public ArrayList<Pessoa> listarPessoas(String busca){
+
+    public ArrayList<Pessoa> listarPessoas(String busca) {
         ArrayList<Pessoa> pessoas = new ArrayList();
         Banco banco = new Banco();
         Connection conexao = banco.getConexao();
         try {
             Statement stmt = conexao.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from pessoas where nome like '%"+busca+"%'");
-            while(rs.next())
-            {
+            ResultSet rs = stmt.executeQuery("select * from pessoas where nome like '%" + busca + "%'");
+            while (rs.next()) {
                 Pessoa p = new Pessoa();
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
                 p.setIdade(rs.getInt("idade"));
                 p.setAltura(rs.getDouble("altura"));
                 p.setPeso(rs.getDouble("peso"));
-                pessoas.add(p);                
+                pessoas.add(p);
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return pessoas;
+    }
+
+    public void Gravar() {
+        Banco b = new Banco();
+        Connection conexao = b.getConexao();
+
+        try {
+            String comando = "insert into pessoas (nome, idade, peso, altura) values (?,?,?,?)";
+            PreparedStatement ps = conexao.prepareStatement(comando);
+            
+            ps.setString(1, this.nome);
+            ps.setInt(2, this.idade);
+            ps.setDouble(3, this.peso);
+            ps.setDouble(4, this.altura);
+            
+            ps.execute();
+            conexao.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(Pessoa.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        return pessoas;
+
     }
 }
