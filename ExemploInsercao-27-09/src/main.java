@@ -26,16 +26,17 @@ public class main {
         try {
             String comando = "insert into pessoas (nome,idade,peso,altura) values(?,?,?,?)";
             PreparedStatement ps = conexao.prepareStatement(comando);
-            ps.setString(1, "Osvaldo");
-            ps.setInt(2, 60);
-            ps.setDouble(3, 50.5);
-            ps.setDouble(4, 1.80);
+            
+            ps.setString(1, "Beltrano");
+            ps.setInt(2, 50);
+            ps.setDouble(3, 90);
+            ps.setDouble(4, 1.90);
             ps.execute();
             System.out.println("Dados armazenados com sucesso!");
+            conexao.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
