@@ -1,5 +1,6 @@
 
 import controllers.ProdutoController;
+import jdk.nashorn.internal.objects.NativeArray;
 import model.Produto;
 
 /*
@@ -7,7 +8,6 @@ import model.Produto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Leonardo
@@ -19,9 +19,24 @@ public class main {
      */
     public static void main(String[] args) {
         ProdutoController pc = new ProdutoController();
-        Produto prod = new Produto();
-        prod.setNome("Mouse Logitech c9393");
-        prod.setQuantidade(50.0);
-        pc.CadastrarProduto(prod);
-    }    
+        
+        //Cadastra um novo Produto
+//        Produto p = new Produto();
+//        p.setNome("Gabinete Redragon Modelo ABCD");
+//        p.setQuantidade(15.0);        
+//        
+//        pc.CadastrarProduto(p);
+
+        //Lista os produtos cadastrados
+//        for(Produto p: pc.Listar()){
+//            System.out.println(p.getNome() + " - " + p.getQuantidade());
+//        }
+        
+        //Consulta um produto com base em uma chave
+        //System.out.println(pc.Consultar(3).getNome());
+        
+        //Deleta um produto com base em uma chave
+        //pc.Remover(4);
+        
+    }
 }

@@ -18,7 +18,7 @@ public class AlunoController {
     private static EntityManagerFactory emf;
     
     private static EntityManager getEntityManager(){
-        if(emf==null)
+        if(emf==null || !emf.isOpen())
         {
             emf = Persistence.createEntityManagerFactory("Alunos");
         }
