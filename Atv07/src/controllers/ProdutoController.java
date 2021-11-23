@@ -24,10 +24,19 @@ public class ProdutoController {
         return emf.createEntityManager();
     }
     
-    public void CadastrarProduto(Produto prod){
+    public void Cadastrar(Produto prod){
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(prod);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
+    
+    public void Atualizar(Produto prod){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(prod);
         em.getTransaction().commit();
         em.close();
         emf.close();
@@ -40,6 +49,20 @@ public class ProdutoController {
         emf.close();
         return produtos;
     }
+    
+    //Consulta uma lista de produtos cujo nome contenham o parametro nome
+    public  List<Produto> ListarPorNome(String nome){
+        EntityManager em = getEntityManager();
+        Query consulta = em.createQuery("from Produto p where nome like :nome");
+        consulta.setParameter("nome", "%"+nome+"%");
+        
+        List<Produto> produtos = consulta.getResultList();
+        
+        em.close();
+        emf.close();
+        return produtos;
+    }
+    
     
      public  Produto Consultar(int id){
         EntityManager em = getEntityManager();

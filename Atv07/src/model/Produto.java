@@ -19,7 +19,8 @@ public class Produto {
     private int id;
     private String nome;
     private Double quantidade;
-
+    
+    
     public int getId() {
         return id;
     }
@@ -43,5 +44,5 @@ public class Produto {
     public void setQuantidade(Double quantidade) {
         this.quantidade = quantidade;
     }
-    
+
 }
