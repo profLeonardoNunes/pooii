@@ -4,13 +4,14 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Mapeamento das classes -->
     <class>model.Produto</class>
+     <class>model.Categoria</class>
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
       <!-- Conexão com o banco de dados -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
       <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
       <!-- String de conexao -->
-      <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/primeiro_hibernate"/>
+      <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/exemplo_relacionamento"/>
       <property name="hibernate.connection.user" value="root"/>
       <property name="hibernate.connection.password" value="root"/>
       <property name="hibernate.hbm2ddl.auto" value="create"/>

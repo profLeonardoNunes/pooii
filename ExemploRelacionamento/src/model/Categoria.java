@@ -5,22 +5,23 @@
  */
 package model;
 
+import java.util.List;
 import javax.persistence.*;
 
 /**
  *
  * @author Leonardo
  */
-
 @Entity
-public class Produto {
+public class Categoria {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String nome;
-    private Double quantidade;
+    private String nome;    
     
-    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categoria")
+    private List<Produto> produtos;
+
     public int getId() {
         return id;
     }
@@ -37,12 +38,14 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Double getQuantidade() {
-        return quantidade;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setQuantidade(Double quantidade) {
-        this.quantidade = quantidade;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
-
+    
+    
+    
 }
