@@ -1,4 +1,5 @@
 
+import Helpers.Crud;
 import controllers.CategoriaController;
 import controllers.ProdutoController;
 import forms.frmProduto;
@@ -23,12 +24,13 @@ public class main {
      */
     public static void main(String[] args) {
         //new frmProduto().setVisible(true) ;       
-
+        Crud crud = new Crud();
        
-//        Categoria c = new Categoria();
-//        CategoriaController cc = new CategoriaController();        
-//        c.setNome("Terceira categoria");        
-//        cc.Cadastrar(c);              
+        Categoria c = new Categoria();
+        CategoriaController cc = new CategoriaController();        
+        c.setNome("Terceira categoria");        
+        //cc.Cadastrar(c);   
+        crud.Cadastrar(cc);
         
 //
 //        Produto p = new Produto();
@@ -42,15 +44,15 @@ public class main {
 //        
 //        pc.Cadastrar(p);
 
-        CategoriaController cc = new CategoriaController(); 
-        for(Produto produto: cc.Consultar(1).getProdutos())
-        {
-            System.out.println(produto.getNome());
-        }
-        
-        ProdutoController pc = new ProdutoController();
-        
-        System.out.println(pc.Consultar(2).getCategoria().getNome());
+//        CategoriaController cc = new CategoriaController(); 
+//        for(Produto produto: cc.Consultar(1).getProdutos())
+//        {
+//            System.out.println(produto.getNome());
+//        }
+//        
+//        ProdutoController pc = new ProdutoController();
+//        
+//        System.out.println(pc.Consultar(2).getCategoria().getNome());;
         
         
 

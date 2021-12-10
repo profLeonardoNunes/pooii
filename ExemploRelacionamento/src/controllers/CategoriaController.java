@@ -17,7 +17,7 @@ import model.Produto;
  * @author Leonardo
  */
 public class CategoriaController {
-      private static EntityManagerFactory emf;
+    private static EntityManagerFactory emf;
     
     private static EntityManager getEntityManager(){
         if(emf == null || !emf.isOpen()){
